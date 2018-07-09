@@ -11,7 +11,7 @@ import UIKit
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var objects = [City]()
+    var cities = [City]()
     
 
     override func viewDidLoad() {
@@ -30,6 +30,7 @@ class MasterViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,22 +49,22 @@ class MasterViewController: UITableViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(cancelAction)
         let insertAction = UIAlertAction(title: "Add", style: .default) { (action) in
-            alert.addAction(insertAction)
-            present(alert, animated: true, completion: nil)
+            let cityTextField = alert.textFields![0] as UITextField
+            let stateTextField = alert.textFields![1] as UITextField
+            let populationTextField = alert.textFields![2] as UITextField
+            guard let image = UIImage(named: cityTextField.text!) else{
+                print("Missing \(cityTextField.text!) image")
+                return }
+            
+            if let population = Int(populationTextField.text!){
+                let city = City(n: cityTextField.text!, s: stateTextField.text!, p: population, i: UIImagePNGRepresentation(image)!)
+                self.cities.append(city)
+                self.tableView.reloadData()
+            }
         }
-        let cityTextField = alert.textFields![0] as UITextField
-        let stateTextField = alert.textFields![1] as UITextField
-        let populationTextField = alert.textFields![2] as UITextField
-        guard let image = UIImage(named: cityTextField.text!) else{
-            print("Missing \(cityTextField.text!) image)
-            return }
         
-        if let population = Int*populationTextField.text!){
-            let city = City(name: cityTextField!, state: stateTextField!, population: popualtion, image: UIImagePNGRepresentation(image)!)
-            self.cities.append(city)
-            self.tableView.reloadData()
-        }
-
+        alert.addAction(insertAction)
+        self.present(alert, animated: true, completion: nil)
     }
 
     // MARK: - Segues
@@ -71,7 +72,7 @@ class MasterViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as! NSDate
+                let object = cities[indexPath.row]
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
@@ -83,18 +84,18 @@ class MasterViewController: UITableViewController {
     // MARK: - Table View
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return cities.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        return cities.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
+        let object = cities[indexPath.row]
+        cell.textLabel!.text = object.name
         return cell
     }
 
@@ -105,11 +106,16 @@ class MasterViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            objects.remove(at: indexPath.row)
+            cities.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let objectToMove = cities.remove(at: sourceIndexPath.row)
+        cities.insert(objectToMove, at: destinationIndexPath.row)
     }
 
 
