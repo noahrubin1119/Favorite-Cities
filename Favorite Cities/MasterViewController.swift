@@ -11,8 +11,8 @@ import UIKit
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var objects = [Any]()
-
+    var objects = [City]()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,12 +36,34 @@ class MasterViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     @objc
-    func insertNewObject(_ sender: Any) {
-        objects.insert(NSDate(), at: 0)
-        let indexPath = IndexPath(row: 0, section: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
+    func insertNewObject(_ sender: Any){
+        let alert = UIAlertController(title: "Add City?", message: nil, preferredStyle: .alert)
+        alert.addTextField { (textField) in textField.placeholder = "City"}
+        alert.addTextField { (textField) in textField.placeholder = "State"}
+        alert.addTextField { (textField) in textField.placeholder = "Population"
+        textField.keyboardType = .numberPad
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        let insertAction = UIAlertAction(title: "Add", style: .default) { (action) in
+            alert.addAction(insertAction)
+            present(alert, animated: true, completion: nil)
+        }
+        let cityTextField = alert.textFields![0] as UITextField
+        let stateTextField = alert.textFields![1] as UITextField
+        let populationTextField = alert.textFields![2] as UITextField
+        guard let image = UIImage(named: cityTextField.text!) else{
+            print("Missing \(cityTextField.text!) image)
+            return }
+        
+        if let population = Int*populationTextField.text!){
+            let city = City(name: cityTextField!, state: stateTextField!, population: popualtion, image: UIImagePNGRepresentation(image)!)
+            self.cities.append(city)
+            self.tableView.reloadData()
+        }
+
     }
 
     // MARK: - Segues
