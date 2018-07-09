@@ -64,8 +64,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="avd-3W-kyO">
-                                <rect key="frame" x="67" y="269" width="240" height="128"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="avd-3W-kyO">
+                                <rect key="frame" x="62" y="239" width="250" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="0vt-cD-vTr"/>
+                                    <constraint firstAttribute="width" constant="250" id="etc-H1-sqQ"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -81,6 +85,12 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="City Details" id="mOI-FS-AaM"/>
+                    <connections>
+                        <outlet property="cityTextField" destination="I7N-Ti-BoP" id="ONd-1A-ahU"/>
+                        <outlet property="imageView" destination="avd-3W-kyO" id="Kb5-7Z-vIm"/>
+                        <outlet property="populationTextField" destination="UC2-sP-CKi" id="2d8-h7-WQe"/>
+                        <outlet property="stateTextField" destination="WP1-V7-2m3" id="iw1-28-7IW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
