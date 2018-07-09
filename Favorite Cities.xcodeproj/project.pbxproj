@@ -15,6 +15,7 @@
 		4FD8FF0C20F3A74F00E6D729 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FD8FF0A20F3A74F00E6D729 /* LaunchScreen.storyboard */; };
 		4FD8FF1720F3A74F00E6D729 /* Favorite_CitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD8FF1620F3A74F00E6D729 /* Favorite_CitiesTests.swift */; };
 		4FD8FF2220F3A74F00E6D729 /* Favorite_CitiesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD8FF2120F3A74F00E6D729 /* Favorite_CitiesUITests.swift */; };
+		4FD8FF3020F3ACAF00E6D729 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD8FF2F20F3ACAF00E6D729 /* City.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		4FD8FF1D20F3A74F00E6D729 /* Favorite CitiesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Favorite CitiesUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FD8FF2120F3A74F00E6D729 /* Favorite_CitiesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite_CitiesUITests.swift; sourceTree = "<group>"; };
 		4FD8FF2320F3A74F00E6D729 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FD8FF2F20F3ACAF00E6D729 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				4FD8FEFF20F3A74C00E6D729 /* AppDelegate.swift */,
 				4FD8FF0120F3A74C00E6D729 /* MasterViewController.swift */,
+				4FD8FF2F20F3ACAF00E6D729 /* City.swift */,
 				4FD8FF0320F3A74C00E6D729 /* DetailViewController.swift */,
 				4FD8FF0520F3A74C00E6D729 /* Main.storyboard */,
 				4FD8FF0820F3A74F00E6D729 /* Assets.xcassets */,
@@ -261,6 +264,7 @@
 			files = (
 				4FD8FF0420F3A74C00E6D729 /* DetailViewController.swift in Sources */,
 				4FD8FF0220F3A74C00E6D729 /* MasterViewController.swift in Sources */,
+				4FD8FF3020F3ACAF00E6D729 /* City.swift in Sources */,
 				4FD8FF0020F3A74C00E6D729 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
